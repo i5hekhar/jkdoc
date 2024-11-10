@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT}:${PORT}" # Map container's port to host
+    env_file:
+      - .env
+    depends_on:
+      - postgres # Ensure PostgreSQL starts before the app
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
